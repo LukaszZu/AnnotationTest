@@ -8,4 +8,5 @@ import java.lang.annotation.*;
 public @interface AzkabanJob {
     String descryption();
     String memory() default "1g";
+    String cpu() default "1";
 }

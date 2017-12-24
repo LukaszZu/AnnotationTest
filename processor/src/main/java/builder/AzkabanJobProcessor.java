@@ -25,12 +25,12 @@ public class AzkabanJobProcessor extends AbstractProcessor {
             Set<? extends Element> elements = roundEnvironment.getElementsAnnotatedWith(c);
             elements.forEach(e -> {
                 AzkabanJob job = e.getAnnotation(AzkabanJob.class);
-                String s = String.format("%s - %s", job.descryption(), job.memory());
+                String s = String.format("%s - %s -> %s", job.descryption(), job.memory(), job.cpu());
                 printWarn(e.getSimpleName() + " - " + s);
                 try {
                     String packageNAme = processingEnv.getElementUtils().getPackageOf(e).getQualifiedName().toString();
                     FileObject resource = processingEnv.getFiler().createResource(
-                            StandardLocation.CLASS_OUTPUT, "azkaban."+packageNAme, e.getSimpleName() + ".properties",e);
+                            StandardLocation.CLASS_OUTPUT, "azkaban." + packageNAme, e.getSimpleName() + ".properties", e);
 
                     printWarn(packageNAme.toString());
 
